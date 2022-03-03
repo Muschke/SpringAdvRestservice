@@ -1,4 +1,4 @@
-package be.vdab.restservice;
+package be.vdab.restservice.repositories;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
