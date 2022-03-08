@@ -3,23 +3,36 @@ package be.vdab.restservice.controllers;
 import be.vdab.restservice.domain.Filiaal;
 import be.vdab.restservice.exceptions.FiliaalNietGevondenException;
 import be.vdab.restservice.services.FiliaalService;
+import org.springframework.hateoas.server.EntityLinks;
+import org.springframework.hateoas.server.ExposesResourceFor;
+import org.springframework.hateoas.server.TypedEntityLinks;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/filialen")
+@CrossOrigin(exposedHeaders = "Location")
+//@ExposesResourceFor(Filiaal.class)
 class FiliaalController {
     private final FiliaalService filiaalService;
+    //private final TypedEntityLinks.ExtendedTypedEntityLinks<Filiaal> links;
 
-    public FiliaalController(FiliaalService filiaalService) {
+    public FiliaalController(FiliaalService filiaalService/*, EntityLinks links*/) {
+
         this.filiaalService = filiaalService;
+       // this.links = links.forType(Filiaal.class, Filiaal::getId);
+    }
+    @GetMapping
+    List<Filiaal> getAlleFilialen() {
+        return filiaalService.findAll();
     }
 
     @GetMapping("{id}")

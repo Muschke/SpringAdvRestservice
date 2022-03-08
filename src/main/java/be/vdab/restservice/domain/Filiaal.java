@@ -15,8 +15,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "filialen")
-@XmlRootElement    //om data in xml te zetten ipv json
-@XmlAccessorType(XmlAccessType.FIELD)  //om data in xml te zetten ipv json
+//@XmlRootElement    //om data in xml te zetten ipv json
+//@XmlAccessorType(XmlAccessType.FIELD)  //om data in xml te zetten ipv json
 public class Filiaal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
