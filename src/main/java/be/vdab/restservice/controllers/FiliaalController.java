@@ -35,18 +35,17 @@ class FiliaalController {
         return filiaalService.findAll();
     }
 
-    @GetMapping("{id}")
-    Filiaal get(@PathVariable long id) {
-        return filiaalService.findById(id)
-                .orElseThrow(FiliaalNietGevondenException::new);
-    }
+   // @GetMapping("{id}")
+    //Filiaal get(@PathVariable long id) {
+     //   return filiaalService.findById(id)
+      //          .orElseThrow(FiliaalNietGevondenException::new);
+    //}
 
     /*om response te sturen bij 404*/
-    @ExceptionHandler(FiliaalNietGevondenException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    void filiaalNietGevonden() {
-    }
-
+    //@ExceptionHandler(FiliaalNietGevondenException.class)
+    //@ResponseStatus(HttpStatus.NOT_FOUND)
+    //void filiaalNietGevonden() {
+    //}
     /*verwijderen*/
     @DeleteMapping("{id}")
     void delete(@PathVariable long id) {
@@ -73,5 +72,17 @@ class FiliaalController {
     void put(@PathVariable long id,
              @RequestBody @Valid Filiaal filiaal) {
         filiaalService.update(filiaal.withId(id));
+    }
+
+
+    /*getmapping maken voor een detailpagina*/
+    @GetMapping("/frontendRestservice/detail/{id}")
+    Filiaal get(@PathVariable long id) {
+        return filiaalService.findById(id)
+                .orElseThrow(FiliaalNietGevondenException::new);
+    }
+    @ExceptionHandler(FiliaalNietGevondenException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    void filiaalNietGevonden() {
     }
 }
